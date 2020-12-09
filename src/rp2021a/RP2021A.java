@@ -20,18 +20,11 @@ public class RP2021A {
      */
     public static void main(String[] args) {
         
-        ArrayList<Patron> instancias = LeerDatos.tokenizarDataSet();
         
-        
-        double[] distancias = new double[instancias.size()];
-        
-        Patron j = new Patron("","", new double[]{2.4,3.3,5.6,7.8});
-        for(int x = 0 ; x<  instancias.size();x++){
-           distancias[x] =    instancias.get(x).calcularDistancia(j);
-        }
-        
+        Patron a = new Patron("","", new double[]{5.006,3.418,1.464,0.244});
+        Patron b = new Patron("","", new double[]{1.2,0.8,5.1,1.1});
                
-        System.out.println();
+        System.out.println(a.calcularDistancia(b));
         // TODO: TOKENIZADOR PARA PODER SEPARAR POR COMAS Y GENERAR UN COLECCION DE PATRONES
         
     }

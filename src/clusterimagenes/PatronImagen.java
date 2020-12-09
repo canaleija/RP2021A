@@ -3,41 +3,56 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package clusterimagenes;
+
+import java.awt.Color;
 
 /**
  *
  * @author working
  */
-public class Patron {
+public class PatronImagen {
     
+    private int x;
+    private int y;
     private String clase;
     private String claseResultante;
     private double[] vectorC;
 
-    public Patron(int n) {
-        this.clase = "";
+    public PatronImagen(int x, int y, double[]vector) {
+        this.x = x;
+        this.y = y;
+        this.vectorC = vector;
+        this.clase = calcularNombre(vector);
         this.claseResultante = "";
-        this.vectorC = new double[n];
     }
 
-    public Patron(String clase, String claseResultante, double[] vectorC) {
-        this.clase = clase;
-        this.claseResultante = claseResultante;
-        this.vectorC = vectorC;
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
     }
-    
-    
-    
-    // distancia euclidiana
-    public double calcularDistancia (Patron aux){
-        double sumatoria = 0;
-        // recorre el vector característico
-        for (int x=0; x<aux.getVectorC().length;x++ ){
-         sumatoria+= Math.pow(this.vectorC[x]-aux.getVectorC()[x], 2);
-        }
-        sumatoria = Math.sqrt(sumatoria);
-        return sumatoria;
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 
     /**
@@ -65,6 +80,7 @@ public class Patron {
      * @param claseResultante the claseResultante to set
      */
     public void setClaseResultante(String claseResultante) {
+        // hacer la adaptación para el tono de la imagen
         this.claseResultante = claseResultante;
     }
 
@@ -81,7 +97,16 @@ public class Patron {
     public void setVectorC(double[] vectorC) {
         this.vectorC = vectorC;
     }
+
+    private String calcularNombre(double[] vector) {
+        Color color = new Color((int)vector[0],(int)vector[1],(int)vector[2]);
+        return ""+color.getRGB();
+    }
     
+    
+    public void actualizarNombre(){
+        this.clase = calcularNombre(this.vectorC);
+    }
     
     
     
