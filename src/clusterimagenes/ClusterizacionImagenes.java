@@ -18,6 +18,7 @@ import javax.naming.spi.DirStateFactory;
 public class ClusterizacionImagenes {
     
     private Image imagenOriginal;
+    
 
     public ClusterizacionImagenes() {
         this.imagenOriginal = null;
@@ -30,7 +31,7 @@ public class ClusterizacionImagenes {
                 
     }
     
-    public void clusterizar(){
+    public void clusterizar(int c){
         // generar la coleccion de instancias obtenidas de los colores de la imagen 
         BufferedImage bi = AbrirImagen.toBufferedImage(this.imagenOriginal);
         ArrayList<PatronImagen> instancias = new ArrayList<>();
@@ -46,7 +47,7 @@ public class ClusterizacionImagenes {
             }
         }
         
-        CMeansImagen clasificador = new CMeansImagen(instancias, 10);
+        CMeansImagen clasificador = new CMeansImagen(instancias, c);
         clasificador.clasifica();
         ArrayList<PatronImagen> resutlado = clasificador.getInstancias();
         
@@ -65,5 +66,52 @@ public class ClusterizacionImagenes {
         
     }
     
+      public void clusterizar2(){
+      
+        ArrayList<PatronImagen> instancias = new ArrayList<>();
+        /*
+        34	56	254
+123	2	56
+23	77	101
+6	6	6
+17	11	255
+245	222	234
+111	101	100
+4	3	1
+4	78	99
+112	255	255
+
+        
+        */
+        
+        instancias.add(new PatronImagen(0, 0, new double[]{34,56,254}));
+        instancias.add(new PatronImagen(0, 1, new double[]{123,2,56}));
+        instancias.add(new PatronImagen(0, 2, new double[]{23,77,101}));
+        instancias.add(new PatronImagen(0, 3, new double[]{6,6,6}));
+        instancias.add(new PatronImagen(0, 4, new double[]{17,11,255}));
+        instancias.add(new PatronImagen(0, 5, new double[]{245,222,234}));
+        instancias.add(new PatronImagen(0, 6, new double[]{111,101,100}));
+        instancias.add(new PatronImagen(0, 7, new double[]{4,3,1}));
+        instancias.add(new PatronImagen(0, 8, new double[]{4,78,99}));
+        instancias.add(new PatronImagen(0, 9, new double[]{112,255,255}));
+        
+        CMeansImagen clasificador = new CMeansImagen(instancias, 2);
+        clasificador.clasifica();
+        ArrayList<PatronImagen> resutlado = clasificador.getInstancias();
+        
+//        // recorrer la imagen 
+//        BufferedImage nuevo = new BufferedImage(bi.getWidth(),bi.getHeight(),BufferedImage.TYPE_INT_RGB);
+//        
+//        for(PatronImagen p: resutlado){
+//            int x = p.getX();
+//            int y = p.getY();
+//            nuevo.setRGB(x, y,Integer.parseInt(p.getClase()));
+//        }
+//        
+//        Image imagencluster = AbrirImagen.toImage(nuevo);
+//       
+//         JframeImagen frame = new JframeImagen(imagencluster);
+        
+    }
     
 }

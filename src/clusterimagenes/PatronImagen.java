@@ -107,6 +107,12 @@ public class PatronImagen {
     public void actualizarNombre(){
         this.clase = calcularNombre(this.vectorC);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        PatronImagen aux = (PatronImagen) obj;
+        return this.clase.equals(aux.getClase()); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

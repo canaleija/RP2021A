@@ -31,6 +31,7 @@ public class CMeansImagen {
      // generar mis centroidesIniciales iniciales aleatorios 
      Random ran = new Random();
      PatronImagen[] centroidesIniciales = new PatronImagen[c];
+     
      for (int x=0; x < this.c;x++){
        int pos = ran.nextInt(this.getInstancias().size());
        centroidesIniciales[x] = new PatronImagen(0,0,this.getInstancias().get(pos).getVectorC().clone());
@@ -76,7 +77,7 @@ public class CMeansImagen {
        System.out.println(contador++);
       
      }while (!verificaCentroides()&&contador<500);
-        
+     System.out.println();
     
     }
     
@@ -109,7 +110,7 @@ public class CMeansImagen {
            if (!ultimo[x].equals(penultimo[x]))
                return false;
        }
-       System.out.println("Convergen los centroides!");
+       //System.out.println("Convergen los centroides!");
        return true;
     }
 
@@ -118,6 +119,7 @@ public class CMeansImagen {
       // recorro el arreglo 
       for (int x=0; x < centroidesNuevos.length;x++){
         centroidesNuevos[x] = new PatronImagen(0,0,new double[this.getInstancias().get(0).getVectorC().length]);
+        centroidesNuevos[x].setClase(this.centroides.get(this.centroides.size()-1)[x].getClase());
       }
     }
 
